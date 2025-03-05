@@ -64,82 +64,28 @@
     <script>
         // Array of 50 questions
         const questions = [
+            // First 8 Questions from Images (Placeholders as per your previous prompt)
             {
-                text: "What is the primary purpose of the Taylor series in numerical methods?",
+                text: "What is the primary purpose of numerical methods in engineering?",
                 options: [
-                    "To approximate a function using a polynomial around a specific point",
-                    "To solve equations exactly without any approximations",
-                    "To remove all computational errors",
-                    "To transform functions into linear systems"
-                ],
-                correctIndex: 0,
-                explanation: "The Taylor series approximates a function as a polynomial around a specific point, facilitating numerical computations."
-            },
-            {
-                text: "Which method is commonly used to solve a system of linear equations iteratively?",
-                options: [
-                    "Newton-Raphson method",
-                    "Gauss-Seidel method",
-                    "Runge-Kutta method",
-                    "Bisection method"
+                    "To provide exact solutions to mathematical problems",
+                    "To approximate solutions when exact methods are impractical",
+                    "To eliminate all errors in computations",
+                    "To simplify complex equations into linear forms"
                 ],
                 correctIndex: 1,
-                explanation: "The Gauss-Seidel method is an iterative technique for solving systems of linear equations."
+                explanation: "Numerical methods are essential in engineering because they offer practical approximate solutions to problems where exact analytical solutions are either too complex or impossible to derive, such as in real-world simulations or nonlinear systems."
             },
             {
-                text: "What does the bisection method require to guarantee convergence?",
+                text: "Which of the following is NOT a reason for using numerical methods?",
                 options: [
-                    "The function must be differentiable",
-                    "The function must change sign over the interval",
-                    "The initial guess must be exact",
-                    "The function must be linear"
-                ],
-                correctIndex: 1,
-                explanation: "The bisection method requires the function to change sign over the interval to ensure a root exists."
-            },
-            {
-                text: "What is the order of convergence for the Newton-Raphson method under ideal conditions?",
-                options: [
-                    "Linear",
-                    "Quadratic",
-                    "Cubic",
-                    "Constant"
-                ],
-                correctIndex: 1,
-                explanation: "The Newton-Raphson method has quadratic convergence when the derivative is non-zero at the root."
-            },
-            {
-                text: "In numerical integration, what does the trapezoidal rule approximate?",
-                options: [
-                    "The derivative of the function",
-                    "The area under the curve",
-                    "The curvature of the function",
-                    "The maximum value of the function"
-                ],
-                correctIndex: 1,
-                explanation: "The trapezoidal rule approximates the area under a curve by summing trapezoids."
-            },
-            {
-                text: "What is the purpose of interpolation in numerical methods?",
-                options: [
-                    "To estimate values between known data points",
-                    "To solve differential equations",
-                    "To minimize computational errors",
-                    "To extrapolate beyond data points"
-                ],
-                correctIndex: 0,
-                explanation: "Interpolation estimates values between known data points using a fitted function."
-            },
-            {
-                text: "Which of the following is a central difference approximation for the first derivative?",
-                options: [
-                    "[f(x + h) - f(x)] / h",
-                    "[f(x) - f(x - h)] / h",
-                    "[f(x + h) - f(x - h)] / (2h)",
-                    "[f(x + h) + f(x - h) - 2f(x)] / h²"
+                    "No analytical solution exists",
+                    "Analytical solution is too complicated",
+                    "To avoid using computers",
+                    "To handle large systems of equations"
                 ],
                 correctIndex: 2,
-                explanation: "The central difference formula [f(x + h) - f(x - h)] / (2h) approximates the first derivative with higher accuracy."
+                explanation: "Numerical methods typically rely on computational tools like computers to solve problems efficiently, especially for large or complex systems, making 'avoiding computers' an incorrect reason."
             },
             {
                 text: "What is the main difference between truncation error and round-off error?",
@@ -150,469 +96,525 @@
                     "Round-off error can be eliminated by using more terms in the approximation"
                 ],
                 correctIndex: 0,
-                explanation: "Truncation error arises from approximating continuous processes, whereas round-off error comes from the limitations of computer arithmetic."
+                explanation: "Truncation error arises when we approximate an infinite process (e.g., cutting off a series), while round-off error occurs because computers use finite precision to represent numbers, leading to small inaccuracies."
             },
             {
-                text: "Which method is used to decompose a matrix into lower and upper triangular matrices?",
+                text: "How many significant figures are in the number 0.002540?",
                 options: [
-                    "Gaussian elimination",
-                    "LU decomposition",
-                    "Jacobi method",
-                    "Power method"
+                    "7",
+                    "5",
+                    "4",
+                    "6"
                 ],
-                correctIndex: 1,
-                explanation: "LU decomposition factors a matrix into lower and upper triangular matrices, facilitating the solution of linear systems."
+                correctIndex: 2,
+                explanation: "In 0.002540, leading zeros are not significant. The significant figures are 2, 5, 4, and 0 (after the decimal), totaling four."
             },
             {
-                text: "What is a necessary condition for the Gauss-Seidel method to converge?",
+                text: "What is the purpose of the Taylor series in numerical methods?",
                 options: [
-                    "The matrix must be symmetric",
-                    "The matrix must be diagonally dominant",
-                    "The matrix must be singular",
-                    "The initial guess must be zero"
-                ],
-                correctIndex: 1,
-                explanation: "For the Gauss-Seidel method to converge, the matrix should be diagonally dominant or positive definite."
-            },
-            {
-                text: "Which method is commonly used to find the largest eigenvalue of a matrix?",
-                options: [
-                    "Power method",
-                    "QR algorithm",
-                    "Jacobi method",
-                    "Bisection method"
+                    "To approximate functions using polynomials",
+                    "To solve differential equations exactly",
+                    "To eliminate round-off errors",
+                    "To convert nonlinear equations to linear ones"
                 ],
                 correctIndex: 0,
-                explanation: "The power method is an iterative technique to find the dominant eigenvalue and its corresponding eigenvector."
+                explanation: "The Taylor series approximates functions as polynomials, which are easier to manipulate numerically, enabling methods like differentiation or integration approximations."
             },
             {
-                text: "What is the simplest numerical method for solving ordinary differential equations?",
+                text: "In the context of root-finding, what does it mean for a method to be 'quadratically convergent'?",
                 options: [
-                    "Euler's method",
-                    "Runge-Kutta method",
-                    "Adams-Bashforth method",
-                    "Finite element method"
+                    "The error decreases linearly with each iteration",
+                    "The error decreases quadratically with each iteration",
+                    "The method requires two initial guesses",
+                    "The method always finds the root in two steps"
+                ],
+                correctIndex: 1,
+                explanation: "Quadratic convergence means the error in each iteration is proportional to the square of the previous error, leading to very rapid convergence near the root."
+            },
+            {
+                text: "Which of the following methods requires the function to change sign over the interval?",
+                options: [
+                    "Newton-Raphson method",
+                    "Secant method",
+                    "Bisection method",
+                    "Fixed-point iteration"
+                ],
+                correctIndex: 2,
+                explanation: "The bisection method relies on the intermediate value theorem, requiring the function to change sign across the interval to guarantee a root exists within it."
+            },
+            {
+                text: "What is a potential pitfall of the Newton-Raphson method?",
+                options: [
+                    "It always converges slowly",
+                    "It requires the derivative of the function",
+                    "It can diverge if the initial guess is poor",
+                    "It only works for polynomial functions"
+                ],
+                correctIndex: 2,
+                explanation: "While it requires the derivative (option b is true), the more critical pitfall is that a poor initial guess or a zero derivative can cause the Newton-Raphson method to diverge or fail."
+            },
+            // Remaining 42 Questions from Document Topics
+            {
+                text: "What is one key advantage of numerical methods over analytical methods?",
+                options: [
+                    "They always provide exact solutions",
+                    "They can handle problems where analytical solutions are impractical",
+                    "They eliminate the need for computers",
+                    "They are only used for linear equations"
+                ],
+                correctIndex: 1,
+                explanation: "Numerical methods excel in solving complex problems (e.g., nonlinear equations or large systems) where analytical solutions are either unavailable or too cumbersome to compute."
+            },
+            {
+                text: "Which of the following is NOT typically a topic covered in a numerical methods course?",
+                options: [
+                    "Solution of linear equations",
+                    "Numerical integration",
+                    "Abstract algebra",
+                    "Solution of differential equations"
+                ],
+                correctIndex: 2,
+                explanation: "Numerical methods courses focus on computational techniques like solving equations or integration, whereas abstract algebra deals with theoretical structures (e.g., groups, rings) unrelated to these practical topics."
+            },
+            {
+                text: "Why are numerical methods important in engineering?",
+                options: [
+                    "They allow for the solution of complex real-world problems",
+                    "They provide exact solutions to all equations",
+                    "They eliminate the need for mathematical modeling",
+                    "They are only used in theoretical research"
                 ],
                 correctIndex: 0,
-                explanation: "Euler's method is the most straightforward numerical technique for solving ODEs, though it may not be the most accurate."
+                explanation: "Engineers use numerical methods to tackle real-world challenges, such as fluid dynamics or structural analysis, where exact solutions are often infeasible."
             },
             {
-                text: "What is the order of accuracy for the fourth-order Runge-Kutta method?",
+                text: "What is the difference between accuracy and precision?",
                 options: [
-                    "First order",
-                    "Second order",
-                    "Third order",
-                    "Fourth order"
+                    "Accuracy is closeness to the true value, precision is consistency",
+                    "Precision is closeness to the true value, accuracy is consistency",
+                    "They are the same thing",
+                    "Accuracy is only important in measurements, precision in calculations"
+                ],
+                correctIndex: 0,
+                explanation: "Accuracy measures how close a result is to the true value, while precision measures how repeatable or consistent results are, regardless of their correctness."
+            },
+            {
+                text: "How many significant figures are in the number 100.0?",
+                options: [
+                    "1",
+                    "2",
+                    "3",
+                    "4"
                 ],
                 correctIndex: 3,
-                explanation: "The fourth-order Runge-Kutta method has an accuracy of O(h⁴), making it highly precise for solving ODEs."
+                explanation: "In 100.0, all digits (1, 0, 0, and the trailing 0 after the decimal) are significant, totaling four significant figures."
             },
             {
-                text: "What is a stiff differential equation?",
+                text: "What is a round-off error?",
                 options: [
-                    "An equation that requires a large number of steps to solve",
-                    "An equation where certain terms cause rapid changes, challenging numerical stability",
-                    "An equation that cannot be solved analytically",
-                    "An equation with multiple solutions"
+                    "An error introduced by approximating a mathematical procedure",
+                    "An error due to the finite precision of computer arithmetic",
+                    "An error caused by incorrect algorithm implementation",
+                    "An error that occurs only in iterative methods"
                 ],
                 correctIndex: 1,
-                explanation: "Stiff equations have terms that lead to rapid variations, requiring special numerical methods for stability."
+                explanation: "Round-off errors occur because computers use finite bits to represent numbers, leading to small discrepancies (e.g., representing π as 3.14159 instead of its infinite value)."
             },
             {
-                text: "Which method is commonly used to solve elliptic partial differential equations?",
+                text: "What is the purpose of normalizing a floating-point number?",
                 options: [
-                    "Finite difference method",
-                    "Method of characteristics",
-                    "Euler's method",
-                    "Runge-Kutta method"
+                    "To increase the number of significant figures",
+                    "To ensure the mantissa is within a specific range",
+                    "To eliminate round-off errors",
+                    "To convert the number to an integer"
+                ],
+                correctIndex: 1,
+                explanation: "Normalization adjusts the mantissa (e.g., to [0.1, 1) in base-10 or [1, 2) in base-2) to standardize representation and maximize precision in floating-point arithmetic."
+            },
+            {
+                text: "In binary floating-point representation, what is the normalized form?",
+                options: [
+                    "±d.ddd... × 10^n",
+                    "±1.ddd... × 2^n",
+                    "±0.ddd... × 2^n",
+                    "±1.ddd... × 10^n"
+                ],
+                correctIndex: 1,
+                explanation: "In binary systems (e.g., IEEE 754), normalized floating-point numbers are written as ±1.ddd... × 2^n, where the leading 1 is implied, optimizing precision."
+            },
+            {
+                text: "What is the main advantage of using double precision over single precision?",
+                options: [
+                    "Faster computation",
+                    "Reduced storage requirements",
+                    "Increased precision and range",
+                    "Simpler implementation"
+                ],
+                correctIndex: 2,
+                explanation: "Double precision uses 64 bits (vs. 32 for single), providing more bits for the mantissa and exponent, thus increasing both precision and the range of representable numbers."
+            },
+            {
+                text: "Why do some machines use chopping instead of rounding?",
+                options: [
+                    "Chopping is more accurate",
+                    "Chopping is faster and simpler",
+                    "Chopping eliminates all errors",
+                    "Chopping is required for integer operations"
+                ],
+                correctIndex: 1,
+                explanation: "Chopping simply truncates excess digits, which is computationally faster and simpler than rounding, though it may introduce larger errors."
+            },
+            {
+                text: "What is the approximate absolute percent relative error used for in numerical methods?",
+                options: [
+                    "To determine the exact true value",
+                    "To assess convergence when the true value is unknown",
+                    "To eliminate truncation errors",
+                    "To calculate the derivative of the function"
+                ],
+                correctIndex: 1,
+                explanation: "When the true value is unknown, this error metric compares successive approximations to decide if an iterative process has converged sufficiently."
+            },
+            {
+                text: "What does the remainder term in the Taylor series represent?",
+                options: [
+                    "The exact value of the function",
+                    "The error due to truncation",
+                    "The derivative of the function",
+                    "The initial guess for the root"
+                ],
+                correctIndex: 1,
+                explanation: "The remainder term quantifies the error introduced by truncating the infinite Taylor series at a finite number of terms."
+            },
+            {
+                text: "For a first-order Taylor series approximation, what is the order of the truncation error?",
+                options: [
+                    "O(h)",
+                    "O(h^2)",
+                    "O(h^3)",
+                    "O(h^4)"
                 ],
                 correctIndex: 0,
-                explanation: "The finite difference method is widely used for solving elliptic PDEs by discretizing the domain."
+                explanation: "A first-order Taylor approximation includes terms up to the first derivative, leaving a truncation error proportional to the step size h, denoted O(h)."
             },
             {
-                text: "What is the purpose of the gradient descent method?",
+                text: "How does reducing the step size h affect the truncation error in a Taylor series approximation?",
                 options: [
-                    "To find the maximum of a function",
-                    "To find the minimum of a function",
-                    "To solve systems of linear equations",
-                    "To approximate derivatives"
+                    "It increases the error",
+                    "It decreases the error",
+                    "It has no effect",
+                    "It eliminates the error"
                 ],
                 correctIndex: 1,
-                explanation: "Gradient descent is an iterative optimization algorithm used to find the minimum of a function."
+                explanation: "Smaller step sizes reduce the truncation error (e.g., O(h) becomes smaller as h decreases), improving the approximation’s accuracy."
             },
             {
-                text: "What additional information does Newton's method for optimization require compared to the Newton-Raphson method for root finding?",
+                text: "What is the purpose of using more terms in a Taylor series expansion?",
                 options: [
-                    "First derivatives",
-                    "Second derivatives",
-                    "Initial guesses",
-                    "Function values only"
+                    "To increase the computational speed",
+                    "To reduce the truncation error",
+                    "To eliminate round-off errors",
+                    "To simplify the function"
                 ],
                 correctIndex: 1,
-                explanation: "Newton's method for optimization requires second derivatives (Hessian matrix), while Newton-Raphson for root finding uses first derivatives."
+                explanation: "Adding more terms includes higher derivatives, reducing the truncation error by making the polynomial closer to the true function."
             },
             {
-                text: "What is the least squares method used for?",
+                text: "In the context of numerical differentiation, what does the central difference approximation improve?",
                 options: [
-                    "To find the best-fit line through data points",
-                    "To solve systems of linear equations",
-                    "To approximate integrals",
-                    "To find roots of functions"
+                    "Computational speed",
+                    "Accuracy of the derivative approximation",
+                    "Elimination of round-off errors",
+                    "Simplification of the function"
+                ],
+                correctIndex: 1,
+                explanation: "Central difference (f(x+h) - f(x-h))/(2h) cancels more error terms than forward or backward differences, yielding a more accurate derivative approximation."
+            },
+            {
+                text: "What is the significance of the Big O notation in error analysis?",
+                options: [
+                    "It indicates the exact error",
+                    "It describes the order of the error term",
+                    "It eliminates the error",
+                    "It converts the error to a percentage"
+                ],
+                correctIndex: 1,
+                explanation: "Big O notation (e.g., O(h^2)) describes how the error scales with a parameter like step size h, not its exact value."
+            },
+            {
+                text: "If a method has a truncation error of O(h^3), what happens to the error when h is halved?",
+                options: [
+                    "It is reduced by a factor of 2",
+                    "It is reduced by a factor of 4",
+                    "It is reduced by a factor of 8",
+                    "It remains the same"
+                ],
+                correctIndex: 2,
+                explanation: "For O(h^3), halving h (h/2) reduces the error to (h/2)^3 = h^3/8, a factor of 8 reduction."
+            },
+            {
+                text: "Why is the Taylor series useful in numerical methods?",
+                options: [
+                    "It provides exact solutions to all functions",
+                    "It allows for the approximation of functions and their derivatives",
+                    "It eliminates the need for initial guesses",
+                    "It only works for polynomial functions"
+                ],
+                correctIndex: 1,
+                explanation: "The Taylor series underpins many numerical techniques by approximating functions and their derivatives, facilitating error analysis and method development."
+            },
+            {
+                text: "What is the main advantage of bracketing methods like bisection?",
+                options: [
+                    "They converge quickly",
+                    "They always find a root if one exists in the interval",
+                    "They do not require derivatives",
+                    "They work for any continuous function"
+                ],
+                correctIndex: 1,
+                explanation: "Bracketing methods guarantee convergence to a root if the initial interval contains one, due to the function changing sign (via the intermediate value theorem)."
+            },
+            {
+                text: "In the bisection method, how is the interval updated?",
+                options: [
+                    "By choosing the subinterval where the function changes sign",
+                    "By selecting the subinterval with the smaller function value",
+                    "By averaging the two endpoints",
+                    "By using the derivative at the midpoint"
                 ],
                 correctIndex: 0,
-                explanation: "The least squares method minimizes the sum of squared residuals to find the best-fit line or curve for data points."
+                explanation: "The interval is halved, and the subinterval where f(a)·f(m) < 0 (indicating a sign change) is kept, ensuring the root remains bracketed."
             },
             {
-                text: "Which method constructs a single polynomial that passes through all given data points?",
+                text: "What is a disadvantage of the bisection method?",
                 options: [
-                    "Linear regression",
-                    "Lagrange interpolation",
-                    "Least squares approximation",
-                    "Cubic spline interpolation"
+                    "It requires the derivative of the function",
+                    "It can be slow to converge",
+                    "It may not find multiple roots",
+                    "It only works for linear functions"
                 ],
                 correctIndex: 1,
-                explanation: "Lagrange interpolation creates a single polynomial that exactly fits all data points."
+                explanation: "Bisection converges linearly (halving the interval each step), which is slower than quadratically convergent methods like Newton-Raphson."
             },
             {
-                text: "What is the condition number of a matrix used for?",
+                text: "How does the false-position method differ from the bisection method?",
                 options: [
-                    "To determine if the matrix is invertible",
-                    "To assess the sensitivity of the solution to perturbations in the data",
-                    "To find the rank of the matrix",
-                    "To compute the determinant"
-                ],
-                correctIndex: 1,
-                explanation: "The condition number measures how sensitive a solution is to small changes in the input, indicating numerical stability."
-            },
-            {
-                text: "What is the primary cause of round-off errors in numerical computations?",
-                options: [
-                    "Using approximate methods",
-                    "Finite precision of computer arithmetic",
-                    "Incorrect algorithm choice",
-                    "Insufficient number of iterations"
-                ],
-                correctIndex: 1,
-                explanation: "Round-off errors occur because computers represent numbers with finite precision, leading to small inaccuracies."
-            },
-            {
-                text: "Which method is commonly used to solve two-point boundary value problems?",
-                options: [
-                    "Shooting method",
-                    "Finite element method",
-                    "Method of undetermined coefficients",
-                    "Separation of variables"
+                    "It uses linear interpolation instead of midpoint selection",
+                    "It requires the derivative of the function",
+                    "It converges faster for all functions",
+                    "It does not require initial guesses"
                 ],
                 correctIndex: 0,
-                explanation: "The shooting method converts a boundary value problem into an initial value problem, solvable with ODE methods."
+                explanation: "False-position estimates the root using the line connecting the endpoints, often converging faster than bisection’s midpoint approach."
             },
             {
-                text: "What is the advantage of adaptive step size in numerical integration?",
+                text: "What is a potential issue with the false-position method?",
                 options: [
-                    "It reduces computational time by using fewer steps",
-                    "It increases accuracy by adjusting the step size based on error estimates",
-                    "It eliminates the need for initial conditions",
-                    "It simplifies the implementation of the method"
+                    "It always converges slowly",
+                    "It may converge to a root outside the initial interval",
+                    "It can get stuck if the function is flat",
+                    "It requires multiple initial guesses"
+                ],
+                correctIndex: 2,
+                explanation: "If the function is nearly flat at one end, that endpoint may remain fixed, slowing convergence significantly."
+            },
+            {
+                text: "What is the Newton-Raphson method based on?",
+                options: [
+                    "Linear interpolation",
+                    "Taylor series expansion",
+                    "Bracketing the root",
+                    "Random sampling"
                 ],
                 correctIndex: 1,
-                explanation: "Adaptive step size adjusts dynamically to maintain accuracy while optimizing computational effort."
+                explanation: "Newton-Raphson uses a first-order Taylor series to approximate the function, deriving the iterative formula x_{n+1} = x_n - f(x_n)/f'(x_n)."
             },
             {
-                text: "What is the Monte Carlo method primarily used for?",
+                text: "What is required for the Newton-Raphson method to work?",
                 options: [
-                    "Solving differential equations",
-                    "Approximating integrals through random sampling",
-                    "Finding roots of functions",
-                    "Interpolating data points"
+                    "Two initial guesses that bracket the root",
+                    "The function and its derivative",
+                    "The function to be continuous",
+                    "The function to be polynomial"
                 ],
                 correctIndex: 1,
-                explanation: "Monte Carlo methods use random sampling to estimate numerical results, often for multidimensional integrals."
+                explanation: "The method needs both f(x) and f'(x) to compute each iteration, unlike bracketing methods that don’t use derivatives."
             },
             {
-                text: "What does it mean for a numerical method to be stable?",
+                text: "Why might the Newton-Raphson method fail?",
                 options: [
-                    "The method always converges to the exact solution",
-                    "Small errors in input do not lead to large errors in output",
-                    "The method requires fewer computational resources",
-                    "The method can handle any type of function"
+                    "If the initial guess is too far from the root",
+                    "If the derivative is zero at the root",
+                    "If the function is not differentiable",
+                    "All of the above"
+                ],
+                correctIndex: 3,
+                explanation: "All these scenarios—poor initial guess, zero derivative, or non-differentiability—can cause divergence or undefined steps in Newton-Raphson."
+            },
+            {
+                text: "How does the secant method approximate the derivative?",
+                options: [
+                    "Using a forward difference",
+                    "Using a backward difference",
+                    "Using a finite difference between two points",
+                    "Using the exact derivative"
+                ],
+                correctIndex: 2,
+                explanation: "The secant method approximates f'(x) as (f(x_n) - f(x_{n-1})) / (x_n - x_{n-1}), a finite difference using two prior points."
+            },
+            {
+                text: "What is an advantage of the secant method over Newton-Raphson?",
+                options: [
+                    "It converges faster",
+                    "It does not require the derivative",
+                    "It always converges",
+                    "It works for discontinuous functions"
                 ],
                 correctIndex: 1,
-                explanation: "Stability ensures that errors do not amplify uncontrollably during computations."
+                explanation: "By avoiding explicit derivative computation, the secant method is simpler to implement when f'(x) is hard to derive."
             },
             {
-                text: "What is the main advantage of using spline interpolation over polynomial interpolation?",
+                text: "What is a multiple root?",
                 options: [
-                    "Splines are easier to compute",
-                    "Splines avoid Runge's phenomenon of oscillations",
-                    "Splines require fewer data points",
-                    "Splines are always more accurate"
+                    "A root where the function crosses the axis multiple times",
+                    "A root where the function and its derivative are zero",
+                    "A root that can be found using multiple methods",
+                    "A root that is not unique"
                 ],
                 correctIndex: 1,
-                explanation: "Spline interpolation reduces oscillations that can occur with high-degree polynomial interpolation."
+                explanation: "A multiple root (e.g., multiplicity 2) occurs where f(x) = 0 and f'(x) = 0, meaning the function is tangent to the x-axis."
             },
             {
-                text: "Why is numerical differentiation more sensitive to errors than numerical integration?",
+                text: "Why do bracketing methods struggle with multiple roots?",
                 options: [
-                    "Differentiation amplifies noise, while integration smooths it",
-                    "Integration requires more computational power",
-                    "Differentiation is only approximate",
-                    "Integration methods are inherently more accurate"
+                    "They require the function to change sign, which may not happen at even multiplicity roots",
+                    "They converge too slowly",
+                    "They require derivatives",
+                    "They cannot handle nonlinear functions"
                 ],
                 correctIndex: 0,
-                explanation: "Differentiation amplifies small changes or noise, whereas integration averages out errors."
+                explanation: "Even multiplicity roots (e.g., x^2 = 0 at x = 0) don’t change sign, so bracketing methods like bisection may miss them."
             },
             {
-                text: "What is the finite element method primarily used for?",
+                text: "What modification can be made to the Newton-Raphson method for multiple roots?",
                 options: [
-                    "Solving ordinary differential equations",
-                    "Solving partial differential equations by discretizing the domain",
-                    "Finding eigenvalues of matrices",
-                    "Optimizing functions"
+                    "Use a smaller step size",
+                    "Use the modified Newton-Raphson formula involving second derivatives",
+                    "Switch to a bracketing method",
+                    "Increase the number of iterations"
                 ],
                 correctIndex: 1,
-                explanation: "The finite element method discretizes the domain to solve PDEs, widely used in engineering applications."
+                explanation: "The modified formula, x_{n+1} = x_n - m·f(x_n)/f'(x_n) (where m is the multiplicity), or using f''(x), handles multiple roots effectively."
             },
             {
-                text: "What does it mean for a method to have a convergence rate of O(h²)?",
+                text: "In the context of root-finding, what is the stopping criterion typically based on?",
                 options: [
-                    "The error decreases linearly with step size h",
-                    "The error decreases quadratically with step size h",
-                    "The method converges in exactly two steps",
-                    "The method requires h to be squared"
+                    "The number of iterations",
+                    "The approximate error being less than a tolerance",
+                    "The function value being exactly zero",
+                    "The derivative being zero"
                 ],
                 correctIndex: 1,
-                explanation: "A convergence rate of O(h²) means halving h reduces the error by a factor of four."
+                explanation: "Iterations stop when the difference between successive approximations (e.g., |x_{n+1} - x_n|) falls below a tolerance, indicating sufficient accuracy."
             },
             {
-                text: "What is the main disadvantage of the secant method compared to Newton-Raphson?",
+                text: "What is the main difference between open and bracketing methods?",
                 options: [
-                    "It requires two initial guesses",
-                    "It may converge more slowly",
-                    "It does not use derivatives",
-                    "It can only find one root at a time"
+                    "Open methods require derivatives, bracketing do not",
+                    "Bracketing methods guarantee convergence, open methods do not",
+                    "Open methods are always faster",
+                    "Bracketing methods are only for linear functions"
                 ],
                 correctIndex: 1,
-                explanation: "The secant method typically converges more slowly than Newton-Raphson, though it avoids derivatives."
+                explanation: "Bracketing methods (e.g., bisection) ensure convergence if a root is bracketed, while open methods (e.g., Newton-Raphson) may diverge with a bad initial guess."
             },
             {
-                text: "What is the purpose of pivoting in Gaussian elimination?",
+                text: "What is the primary reason for using numerical methods in chemical engineering?",
                 options: [
-                    "To reduce the number of operations",
-                    "To avoid division by zero and improve numerical stability",
-                    "To make the matrix symmetric",
-                    "To find the determinant"
+                    "To avoid complex calculus",
+                    "To model and solve real-world problems where analytical solutions are impractical",
+                    "To eliminate the need for experimental data",
+                    "To simplify all equations to linear forms"
                 ],
                 correctIndex: 1,
-                explanation: "Pivoting prevents division by small numbers or zero, enhancing stability."
+                explanation: "Numerical methods are essential in chemical engineering for modeling complex processes such as fluid dynamics, heat transfer, and chemical reactions where analytical solutions are often infeasible."
             },
             {
-                text: "What is the composite Simpson's rule?",
+                text: "Which of the following best describes the role of algorithms in numerical methods?",
                 options: [
-                    "A method that applies Simpson's rule to multiple subintervals",
-                    "A method that combines trapezoidal and midpoint rules",
-                    "A method for solving differential equations",
-                    "A method for finding roots"
+                    "They provide exact solutions to mathematical problems",
+                    "They are step-by-step procedures to approximate solutions",
+                    "They eliminate all types of errors",
+                    "They are only used for theoretical analysis"
+                ],
+                correctIndex: 1,
+                explanation: "Algorithms in numerical methods are systematic procedures designed to compute approximate solutions to mathematical problems when exact solutions are impractical."
+            },
+            {
+                text: "What is the effect of using a larger number of significant figures in computations?",
+                options: [
+                    "It increases round-off errors",
+                    "It decreases round-off errors",
+                    "It has no effect on errors",
+                    "It eliminates truncation errors"
+                ],
+                correctIndex: 1,
+                explanation: "Using more significant figures increases precision, reducing round-off errors caused by finite representation of numbers in computers."
+            },
+            {
+                text: "In floating-point arithmetic, what is the purpose of the exponent?",
+                options: [
+                    "To determine the precision of the number",
+                    "To indicate the position of the decimal point",
+                    "To store the sign of the number",
+                    "To eliminate round-off errors"
+                ],
+                correctIndex: 1,
+                explanation: "The exponent in floating-point representation (e.g., ±d.ddd × 10^n) specifies the position of the decimal point, allowing representation of very large or small numbers."
+            },
+            {
+                text: "What is the truncation error in the context of numerical integration?",
+                options: [
+                    "The error due to rounding numbers",
+                    "The error from approximating the integral with a finite sum",
+                    "The error caused by incorrect algorithm implementation",
+                    "The error from using too many terms in the approximation"
+                ],
+                correctIndex: 1,
+                explanation: "Truncation error in numerical integration arises when a continuous integral is approximated by a finite sum, omitting higher-order terms."
+            },
+            {
+                text: "How does the order of a numerical method relate to its truncation error?",
+                options: [
+                    "Higher-order methods have larger truncation errors",
+                    "Higher-order methods have smaller truncation errors for the same step size",
+                    "The order does not affect the truncation error",
+                    "Lower-order methods are always more accurate"
+                ],
+                correctIndex: 1,
+                explanation: "Higher-order methods reduce truncation error more rapidly as step size decreases (e.g., O(h^4) vs. O(h^2)), improving accuracy."
+            },
+            {
+                text: "What is the main advantage of the modified secant method over the standard secant method?",
+                options: [
+                    "It requires only one initial guess",
+                    "It converges faster for all functions",
+                    "It eliminates the need for derivatives",
+                    "It always finds multiple roots"
                 ],
                 correctIndex: 0,
-                explanation: "The composite Simpson's rule divides the interval into subintervals for improved accuracy."
+                explanation: "The modified secant method uses one initial guess and a perturbation to estimate the derivative, simplifying setup compared to the standard secant method’s two guesses."
             },
             {
-                text: "What is adaptive quadrature?",
+                text: "Why might the Newton-Raphson method be preferred over bracketing methods for some functions?",
                 options: [
-                    "A method that adjusts the step size based on the function's behavior",
-                    "A method that uses random sampling",
-                    "A method that requires the function to be smooth",
-                    "A method that only works for polynomials"
-                ],
-                correctIndex: 0,
-                explanation: "Adaptive quadrature adjusts step size dynamically to focus on areas of rapid change."
-            },
-            {
-                text: "What is the conjugate gradient method used for?",
-                options: [
-                    "Solving systems of nonlinear equations",
-                    "Finding minima of quadratic functions",
-                    "Interpolating data points",
-                    "Approximating integrals"
+                    "It guarantees convergence",
+                    "It converges faster near the root",
+                    "It does not require initial guesses",
+                    "It works for discontinuous functions"
                 ],
                 correctIndex: 1,
-                explanation: "The conjugate gradient method solves large linear systems and minimizes quadratic functions."
-            },
-            {
-                text: "What is the difference between explicit and implicit methods for solving PDEs?",
-                options: [
-                    "Explicit methods are always more accurate",
-                    "Implicit methods require solving a system of equations at each step",
-                    "Explicit methods are only used for linear PDEs",
-                    "Implicit methods are computationally cheaper"
-                ],
-                correctIndex: 1,
-                explanation: "Implicit methods involve solving systems of equations, offering better stability."
-            },
-            {
-                text: "Why are iterative methods preferred for solving large sparse linear systems?",
-                options: [
-                    "They are always faster than direct methods",
-                    "They exploit sparsity to reduce memory and computational requirements",
-                    "They guarantee exact solutions",
-                    "They do not require initial guesses"
-                ],
-                correctIndex: 1,
-                explanation: "Iterative methods leverage sparsity to save memory and computation time."
-            },
-            {
-                text: "What is Hermite interpolation?",
-                options: [
-                    "Interpolation that matches both function values and derivatives at data points",
-                    "Interpolation using piecewise linear functions",
-                    "Interpolation that minimizes the maximum error",
-                    "Interpolation for periodic functions"
-                ],
-                correctIndex: 0,
-                explanation: "Hermite interpolation matches function values and derivatives for smoother results."
-            },
-            {
-                text: "What is the multidimensional Newton-Raphson method used for?",
-                options: [
-                    "Solving systems of linear equations",
-                    "Solving systems of nonlinear equations",
-                    "Finding eigenvalues",
-                    "Approximating integrals"
-                ],
-                correctIndex: 1,
-                explanation: "The multidimensional Newton-Raphson method solves nonlinear systems using the Jacobian."
-            },
-            {
-                text: "How can numerical methods handle improper integrals with infinite limits?",
-                options: [
-                    "By using a change of variables to transform the integral",
-                    "By increasing the number of subintervals indefinitely",
-                    "By using high-order polynomials",
-                    "By applying the trapezoidal rule directly"
-                ],
-                correctIndex: 0,
-                explanation: "Substitution transforms infinite limits into finite ones for numerical integration."
-            },
-            {
-                text: "What is Richardson extrapolation used for?",
-                options: [
-                    "To improve the accuracy of numerical approximations",
-                    "To solve differential equations",
-                    "To find roots of functions",
-                    "To interpolate data points"
-                ],
-                correctIndex: 0,
-                explanation: "Richardson extrapolation enhances accuracy by combining results from different step sizes."
-            },
-            {
-                text: "What are spectral methods in numerical analysis?",
-                options: [
-                    "Methods that use eigenvectors to solve problems",
-                    "Methods that approximate solutions using global polynomials or trigonometric series",
-                    "Methods that rely on random sampling",
-                    "Methods for solving linear systems"
-                ],
-                correctIndex: 1,
-                explanation: "Spectral methods use basis functions like Fourier series for high-accuracy solutions."
-            },
-            {
-                text: "What is the main idea behind multigrid methods?",
-                options: [
-                    "Using multiple grids of different resolutions to accelerate convergence",
-                    "Solving problems on a single fine grid",
-                    "Applying iterative methods sequentially",
-                    "Reducing the problem to a smaller subsystem"
-                ],
-                correctIndex: 0,
-                explanation: "Multigrid methods use coarse and fine grids to efficiently solve large systems."
-            },
-            {
-                text: "What is an ill-conditioned matrix?",
-                options: [
-                    "A matrix that is nearly singular, making solutions sensitive to perturbations",
-                    "A matrix with all zero entries",
-                    "A matrix that is not square",
-                    "A matrix with a large determinant"
-                ],
-                correctIndex: 0,
-                explanation: "Ill-conditioned matrices have high condition numbers, indicating sensitivity to small changes."
-            },
-            {
-                text: "Why are Chebyshev nodes preferred over equally spaced nodes in polynomial interpolation?",
-                options: [
-                    "They reduce computational complexity",
-                    "They minimize the maximum interpolation error",
-                    "They are easier to implement",
-                    "They require fewer data points"
-                ],
-                correctIndex: 1,
-                explanation: "Chebyshev nodes minimize the maximum error by distributing points optimally."
-            },
-            {
-                text: "Which formula approximates the second derivative using central differences?",
-                options: [
-                    "[f(x + h) - 2f(x) + f(x - h)] / h²",
-                    "[f(x + h) - f(x - h)] / (2h)",
-                    "[f(x) - f(x - h)] / h",
-                    "[f(x + h) - f(x)] / h"
-                ],
-                correctIndex: 0,
-                explanation: "The central difference formula for the second derivative is [f(x + h) - 2f(x) + f(x - h)] / h²."
-            },
-            {
-                text: "What is the simplex method used for?",
-                options: [
-                    "Solving linear programming problems",
-                    "Finding roots of nonlinear equations",
-                    "Approximating integrals",
-                    "Interpolating data"
-                ],
-                correctIndex: 0,
-                explanation: "The simplex method optimizes linear objective functions subject to linear constraints."
-            },
-            {
-                text: "How is the least squares solution for an overdetermined system typically computed?",
-                options: [
-                    "By solving the normal equations",
-                    "By using Gaussian elimination directly",
-                    "By applying the bisection method",
-                    "By using Euler's method"
-                ],
-                correctIndex: 0,
-                explanation: "The least squares solution for overdetermined systems is found by solving the normal equations."
-            },
-            {
-                text: "What is Gaussian quadrature?",
-                options: [
-                    "A method that uses equally spaced points for integration",
-                    "A method that selects optimal points and weights for high accuracy",
-                    "A method that approximates integrals using random sampling",
-                    "A method for solving differential equations"
-                ],
-                correctIndex: 1,
-                explanation: "Gaussian quadrature uses optimal points and weights for exact integration of polynomials."
-            },
-            {
-                text: "What is the purpose of Richardson extrapolation in numerical differentiation?",
-                options: [
-                    "To increase the order of accuracy",
-                    "To reduce computational time",
-                    "To eliminate the need for step size",
-                    "To solve for multiple variables"
-                ],
-                correctIndex: 0,
-                explanation: "Richardson extrapolation improves accuracy by combining approximations with different step sizes."
-            },
-            {
-                text: "What does it mean for an iterative method to be numerically stable?",
-                options: [
-                    "The method converges to the exact solution",
-                    "The method's errors do not grow unboundedly over iterations",
-                    "The method requires fewer iterations",
-                    "The method can handle any initial guess"
-                ],
-                correctIndex: 1,
-                explanation: "Numerical stability ensures errors remain bounded, allowing convergence or controlled behavior."
+                explanation: "Newton-Raphson often converges quadratically near a root, making it faster than linearly convergent bracketing methods like bisection, though it requires a good initial guess."
             }
         ];
 
