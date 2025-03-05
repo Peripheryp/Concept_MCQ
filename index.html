@@ -361,11 +361,19 @@
 
             // Randomize options and set correct answer consistently
             questions.forEach(q => {
-                const correctAnswerText = q[1][0]; // Original correct answer
-                const allOptions = q[1]; // All options
-                shuffleArray(allOptions); // Shuffle all options randomly
-                q[1] = allOptions; // Update options with shuffled array
-                const correctIndex = allOptions.indexOf(correctAnswerText); // Find where correct answer landed
+                const correctAnswerText = q[1][0]; // The correct answer
+                const incorrectOptions = q[1].slice(1); // All incorrect options
+                shuffleArray(incorrectOptions); // Shuffle only incorrect options
+                const correctIndex = Math.floor(Math.random() * 4); // Random position (0-3) for correct answer
+                const newOptions = [];
+                for (let i = 0; i < 4; i++) {
+                    if (i === correctIndex) {
+                        newOptions[i] = correctAnswerText; // Place correct answer at random position
+                    } else {
+                        newOptions[i] = incorrectOptions.shift(); // Fill with shuffled incorrect options
+                    }
+                }
+                q[1] = newOptions; // Update options array
                 q[5] = String.fromCharCode(65 + correctIndex); // Set correct answer letter (A, B, C, D)
             });
 
@@ -392,7 +400,6 @@
                 const correctAnswer = questions[questionNumber - 1][5];
                 const feedback = document.getElementById(`feedback${questionNumber}`);
                 const explanation = document.getElementById(`exp${questionNumber}`);
-                const radios = document.getElementsByName(`q${questionNumber}`);
 
                 // Reset previous feedback and score adjustment
                 if (feedback.classList.contains('counted')) {
