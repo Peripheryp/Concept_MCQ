@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerical Methods Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .options {
+            margin-left: 20px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .feedback {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .explanation {
+            color: red;
+            font-style: italic;
+            margin-top: 5px;
+            display: none;
+        }
+        #score {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Numerical Methods Quiz</h2>
+    <div id="quizContainer">
+        <script>
+            // Function to shuffle array (Fisher-Yates algorithm)
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            let questions = [
+                // First 8 Questions from the Images (Adjusted to match the uploaded images exactly)
+                ["Q5: Taylor Series Expansion (5 points) - What is the purpose of the Taylor series expansion in numerical methods?", 
+                    ["To approximate a function using a polynomial expansion around a specific point", 
+                     "To solve equations exactly without approximations", 
+                     "To eliminate all numerical errors in computations", 
+                     "To convert a function into a system of linear equations"], 
+                    "The Taylor series approximates a function as a polynomial around a specific point, which is its primary purpose in numerical methods."],
+
+                ["Q6: Bracketing Methods for Root Finding (5 points) - Which of the following statements is true about bracketing methods in numerical root finding?", 
+                    ["Bracketing methods require two initial guesses that must be on opposite sides of the root", 
+                     "Bracketing methods can start with any random initial guess", 
+                     "Bracketing methods find roots by using derivatives of the function", 
+                     "Bracketing methods work only for polynomial functions"], 
+                    "Bracketing methods require two initial guesses on opposite sides of the root to ensure convergence."],
+
+                ["Q7: Open Methods for Root Finding (5 points) - Which of the following statements correctly describes open methods like Newton-Raphson and Secant?", 
+                    ["They require two initial guesses that must bracket the root", 
+                     "They do not require bracketing and can converge faster than bracketing methods", 
+                     "They always converge to the root regardless of the initial guess", 
+                     "They are only applicable to polynomial equations"], 
+                    "Open methods like Newton-Raphson and Secant do not require bracketing and can converge faster if the initial guess is good."],
+
+                ["Q8: Newton-Raphson vs. Secant Method (5 points) - What is the key difference between the Newton-Raphson and Secant methods?", 
+                    ["The Secant method uses an approximation of the derivative, while Newton-Raphson requires an exact derivative", 
+                     "Newton-Raphson requires one initial guess, while the Secant method requires two", 
+                     "The Secant method requires two initial guesses, while Newton-Raphson only needs one", 
+                     "Newton-Raphson is always faster and more accurate than the Secant method"], 
+                    "The Secant method approximates the derivative using two points, while Newton-Raphson uses the exact derivative."],
+
+                ["Q4: Round-off Errors (5 points) - Why do some machines use chopping instead of rounding?", 
+                    ["Because chopping is more accurate than rounding", 
+                     "Because rounding adds to the computational overhead", 
+                     "Because chopping eliminates all numerical errors", 
+                     "Because rounding is slower than chopping"], 
+                    "Chopping is used to reduce computational overhead, though it may introduce more error than rounding."],
+
+                ["Q5: Truncation Errors (5 points) - What is a truncation error?", 
+                    ["An error that occurs when limited significant figures are used to represent exact numbers", 
+                     "An error that results when approximations are used to represent exact mathematical procedures", 
+                     "An error that occurs due to rounding off numbers in computations", 
+                     "An error that only occurs in polynomial functions"], 
+                    "Truncation error arises from approximating exact mathematical procedures, such as in Taylor series."],
+
+                ["Q3: Types of Numerical Errors (5 points) - The number of significant figures indicates:", 
+                    ["The accuracy of the measurement", 
+                     "The precision of the measurement", 
+                     "The range of the measurement", 
+                     "The error in the measurement"], 
+                    "Significant figures indicate the precision of a measurement, not necessarily its accuracy."],
+
+                ["Q2: Introduction to Numerical Methods (5 points) - An analytical solution is difficult to obtain or not practical in numerical methods because:", 
+                    ["No analytical solution exists", 
+                     "The problem involves only linear equations", 
+                     "Numerical methods always provide exact solutions", 
+                     "The function is always continuous"], 
+                    "Numerical methods are used when no analytical solution exists or it’s impractical to find one."],
+
+                // Additional 42 MCQs Based on Documents
+                ["What is the primary purpose of numerical methods in engineering?", 
+                    ["To solve equations exactly without approximations", 
+                     "To obtain numerical solutions when analytical solutions are difficult or do not exist", 
+                     "To eliminate all errors in computations", 
+                     "To convert all problems into polynomial equations"], 
+                    "Numerical methods address problems where analytical solutions are challenging or nonexistent."],
+
+                ["What does the Taylor series expansion approximate?", 
+                    ["Only linear functions", 
+                     "Any smooth function as a polynomial around a specific point", 
+                     "Only exponential functions", 
+                     "Discrete functions only"], 
+                    "The Taylor series approximates any smooth function as a polynomial around a specific point."],
+
+                ["What is the remainder term (R_n) in a Taylor series?", 
+                    ["The exact value of the function", 
+                     "The error due to truncation, accounting for terms beyond the nth order", 
+                     "The derivative of the function at a point", 
+                     "The initial guess for root finding"], 
+                    "The remainder term represents the truncation error from omitted higher-order terms."],
+
+                ["In the context of truncation errors, what happens to the error when the step size (h) is halved for an O(h^2) approximation?", 
+                    ["The error doubles", 
+                     "The error is quartered", 
+                     "The error remains the same", 
+                     "The error is halved"], 
+                    "For an O(h^2) approximation, halving the step size quarters the error due to the squared term."],
+
+                ["What is a bracketing method in root finding?", 
+                    ["A method that uses derivatives to find roots", 
+                     "A method requiring two initial guesses on opposite sides of the root", 
+                     "A method that always converges regardless of initial guesses", 
+                     "A method used only for linear equations"], 
+                    "Bracketing methods require initial guesses on opposite sides of the root to ensure convergence."],
+
+                ["Which of the following is a characteristic of the Bisection method?", 
+                    ["It requires the derivative of the function", 
+                     "It always converges, but it is slow", 
+                     "It does not require initial guesses to bracket the root", 
+                     "It is only applicable to polynomial functions"], 
+                    "The Bisection method always converges but is slower due to its linear convergence rate."],
+
+                ["What is a key advantage of the False-Position method over the Bisection method?", 
+                    ["It is slower but more accurate", 
+                     "It is faster and always converges for a single root", 
+                     "It does not require initial guesses", 
+                     "It works only for polynomial functions"], 
+                    "False-Position often converges faster than Bisection for a single root."],
+
+                ["What is the Newton-Raphson method based on?", 
+                    ["Linear interpolation between two points", 
+                     "Taylor series expansion of the function", 
+                     "Bracketing the root with initial guesses", 
+                     "Random initial guesses without derivatives"], 
+                    "Newton-Raphson uses a Taylor series expansion to iteratively find roots."],
+
+                ["Why might the Newton-Raphson method fail to converge?", 
+                    ["It always converges regardless of initial guesses", 
+                     "The derivative is zero at some point, causing a horizontal shoot-off", 
+                     "It requires two initial guesses that bracket the root", 
+                     "It only works for linear equations"], 
+                    "Newton-Raphson fails if the derivative is zero, leading to division by zero or poor convergence."],
+
+                ["How many initial guesses does the Secant method require?", 
+                    ["One", 
+                     "Two", 
+                     "Three", 
+                     "None"], 
+                    "The Secant method requires two initial guesses to approximate the derivative."],
+
+                ["What is a round-off error?", 
+                    ["An error due to approximations in mathematical procedures", 
+                     "An error resulting from limited significant figures in representing numbers", 
+                     "An error only in polynomial functions", 
+                     "An error due to large step sizes in Taylor series"], 
+                    "Round-off errors stem from finite precision in number representation on computers."],
+
+                ["What is the significance of significant figures in numerical methods?", 
+                    ["They indicate the accuracy of the measurement only", 
+                     "They indicate the precision of the measurement", 
+                     "They eliminate all errors in computations", 
+                     "They are irrelevant in numerical methods"], 
+                    "Significant figures reflect the precision of a measurement in numerical computations."],
+
+                ["What is the difference between accuracy and precision?", 
+                    ["Accuracy is closeness to the true value, precision is closeness to other estimates", 
+                     "Accuracy and precision are the same thing", 
+                     "Precision is closeness to the true value, accuracy is closeness to other estimates", 
+                     "Neither is relevant in numerical methods"], 
+                    "Accuracy measures closeness to the true value, while precision measures consistency among estimates."],
+
+                ["What happens when you normalize a floating-point number?", 
+                    ["You increase the number of significant figures", 
+                     "You ensure exactly one non-zero digit appears before the decimal point", 
+                     "You eliminate all round-off errors", 
+                     "You convert it to an integer"], 
+                    "Normalization ensures a single non-zero digit before the decimal for efficient representation."],
+
+                ["In a base-2 (binary) system, how is a floating-point number typically represented?", 
+                    ["±d.ddd... × 10^n", 
+                     "±1.ddd... × 2^n", 
+                     "±d.ddd... × 2^n", 
+                     "±1.ddd... × 10^n"], 
+                    "In binary, floating-point numbers are represented as ±1.ddd... × 2^n."],
+
+                ["What is the order of truncation error for a first-order Taylor series approximation?", 
+                    ["O(h)", 
+                     "O(h^2)", 
+                     "O(h^3)", 
+                     "O(h^4)"], 
+                    "A first-order Taylor series has a truncation error of O(h), proportional to the step size."],
+
+                ["Why are numerical methods needed for the velocity of a falling parachutist equation when solving for the drag coefficient (c)?", 
+                    ["The equation is linear and easy to solve analytically", 
+                     "It is impossible to solve algebraically for c, requiring numerical methods", 
+                     "The equation has no roots", 
+                     "Numerical methods are slower than analytical methods"], 
+                    "The equation for the drag coefficient is nonlinear, making an analytical solution impossible."],
+
+                ["What is a disadvantage of bracketing methods like Bisection?", 
+                    ["They are always faster than open methods", 
+                     "They require initial guesses that bracket the root, which can be slow", 
+                     "They do not converge for any function", 
+                     "They require derivatives of the function"], 
+                    "Bracketing methods can be slow because they require initial guesses enclosing the root."],
+
+                ["What is a key feature of open methods like Newton-Raphson?", 
+                    ["They require two initial guesses that bracket the root", 
+                     "They can converge faster but may not converge for all initial guesses", 
+                     "They always converge slowly", 
+                     "They work only for polynomial functions"], 
+                    "Open methods can converge quickly but depend on good initial guesses for convergence."],
+
+                ["How does the Modified Secant method differ from the Secant method?", 
+                    ["It requires two initial guesses, while Secant requires one", 
+                     "It requires only one guess and uses a fractional perturbation", 
+                     "It always converges faster than the Secant method", 
+                     "It uses derivatives instead of approximations"], 
+                    "The Modified Secant method uses one guess and a perturbation, unlike the two guesses in Secant."],
+
+                ["What is a multiple root in the context of root-finding methods?", 
+                    ["A root where the function crosses the x-axis at a single point", 
+                     "A point where the function is tangent to the x-axis, causing both f(x) and f'(x) to be zero", 
+                     "A root that can only be found using bracketing methods", 
+                     "A root that requires no initial guesses"], 
+                    "A multiple root occurs where the function and its derivative are both zero, complicating root finding."],
+
+                ["Why might Newton-Raphson and Secant methods struggle with multiple roots?", 
+                    ["They require bracketing of the root", 
+                     "Both f(x) and f'(x) are zero, causing division by zero", 
+                     "They converge too quickly for multiple roots", 
+                     "They only occur in linear equations"], 
+                    "Multiple roots cause division by zero in Newton-Raphson and Secant due to zero derivatives."],
+
+                ["What is the formula for the Newton-Raphson method?", 
+                    ["x_{i+1} = x_i - f(x_i) / f'(x_i)", 
+                     "x_{i+1} = (x_i + x_u) / 2", 
+                     "x_{i+1} = x_i - (f(x_i) - f(x_{i-1})) / (x_i - x_{i-1})", 
+                     "x_{i+1} = x_i + f(x_i)"], 
+                    "The Newton-Raphson formula is x_{i+1} = x_i - f(x_i) / f'(x_i)."],
+
+                ["What is the primary disadvantage of round-off errors in numerical methods?", 
+                    ["They are always negligible", 
+                     "They result from limited significant figures in representing numbers", 
+                     "They only occur in bracketing methods", 
+                     "They can be completely eliminated by using more terms in the Taylor series"], 
+                    "Round-off errors arise from finite precision in number representation, not Taylor series terms."],
+
+                ["What is the purpose of the Bisection method’s condition f(x_l) * f(x_u) < 0?", 
+                    ["It ensures the root lies between x_l and x_u", 
+                     "It indicates the function has no roots", 
+                     "It requires the derivative to be zero", 
+                     "It works only for polynomial functions"], 
+                    "The condition f(x_l) * f(x_u) < 0 ensures the root is bracketed between the points."],
+
+                ["How does the Secant method approximate the derivative in Newton-Raphson?", 
+                    ["Using the exact derivative f'(x)", 
+                     "Using a backward finite divided difference", 
+                     "Using linear interpolation between three points", 
+                     "Using the Taylor series expansion directly"], 
+                    "The Secant method approximates the derivative with a finite difference between two points."],
+
+                ["What is a key benefit of using the Taylor series in numerical methods?", 
+                    ["It eliminates all errors in computations", 
+                     "It provides a polynomial approximation for non-elementary functions", 
+                     "It requires no initial guesses for root finding", 
+                     "It works only for linear equations"], 
+                    "Taylor series approximates non-elementary functions as polynomials for numerical computation."],
+
+                ["What is the order of convergence for the Newton-Raphson method under ideal conditions?", 
+                    ["Linear", 
+                     "Quadratic", 
+                     "Cubic", 
+                     "Exponential"], 
+                    "Newton-Raphson converges quadratically under ideal conditions with good initial guesses."],
+
+                ["Why are floating-point numbers used in computers for numerical methods?", 
+                    ["They eliminate all round-off errors", 
+                     "They allow representation of both very small and very large numbers efficiently", 
+                     "They are faster than integer representations", 
+                     "They are only used for integer values"], 
+                    "Floating-point numbers efficiently represent a wide range of values in numerical methods."],
+
+                ["What is the main difference between chopping and rounding in numerical computations?", 
+                    ["Chopping is more accurate than rounding", 
+                     "Rounding replaces the number by the nearest machine number, while chopping discards extra digits", 
+                     "Chopping increases computational overhead, while rounding does not", 
+                     "Rounding is used only for integers, while chopping is for decimals"], 
+                    "Chopping discards extra digits, while rounding adjusts to the nearest machine number."],
+
+                ["What is the approximate absolute percent relative error used for in numerical methods?", 
+                    ["To determine the exact true value", 
+                     "To assess convergence when the true value is unknown", 
+                     "To eliminate truncation errors", 
+                     "To calculate the derivative of the function"], 
+                    "It assesses convergence by comparing successive approximations when the true value is unknown."],
+
+                ["In the context of the Bisection method, how is the new interval determined?", 
+                    ["By using the derivative of the function", 
+                     "By checking if the function changes sign in the interval and halving it", 
+                     "By using linear interpolation between points", 
+                     "By requiring two initial guesses on the same side of the root"], 
+                    "The Bisection method halves the interval where the function changes sign."],
+
+                ["What is a potential pitfall of the False-Position method?", 
+                    ["It always converges slowly", 
+                     "It may not converge for multiple roots or when initial guesses are poorly chosen", 
+                     "It requires the derivative of the function", 
+                     "It works only for linear equations"], 
+                    "False-Position can fail to converge for multiple roots or poor initial guesses."],
+
+                ["How does reducing the step size (h) in a Taylor series affect truncation error?", 
+                    ["It increases the error", 
+                     "It decreases the error, improving accuracy", 
+                     "It has no effect on the error", 
+                     "It eliminates round-off errors"], 
+                    "Reducing the step size decreases truncation error, improving the approximation accuracy."],
+
+                ["What is the primary limitation of using significant figures in numerical computations?", 
+                    ["They increase computational speed", 
+                     "They introduce round-off errors due to limited representation", 
+                     "They eliminate truncation errors", 
+                     "They are only used for analytical solutions"], 
+                    "Limited significant figures can introduce round-off errors in numerical computations."],
+
+                ["What is the main advantage of the Secant method over Newton-Raphson?", 
+                    ["It always converges faster", 
+                     "It does not require the derivative of the function, using an approximation instead", 
+                     "It requires only one initial guess", 
+                     "It works only for polynomial functions"], 
+                    "The Secant method avoids needing derivatives, using a finite difference approximation."],
+
+                ["What is the role of the stopping criterion in iterative numerical methods?", 
+                    ["To increase the number of iterations", 
+                     "To determine when the approximate error is small enough to stop iterating", 
+                     "To eliminate all errors in the computation", 
+                     "To ensure the method uses only derivatives"], 
+                    "The stopping criterion ensures iterations stop when the error is sufficiently small."],
+
+                ["Why are multiple roots challenging for numerical root-finding methods?", 
+                    ["They require bracketing methods only", 
+                     "The function does not change sign, and derivatives may be zero, causing convergence issues", 
+                     "They are always easy to find with open methods", 
+                     "They only occur in linear equations"], 
+                    "Multiple roots challenge methods like Newton-Raphson due to zero derivatives and no sign change."],
+
+                ["What is the formula for the Secant method?", 
+                    ["x_{i+1} = x_i - f(x_i) / f'(x_i)", 
+                     "x_{i+1} = x_i - f(x_i) * (x_i - x_{i-1}) / (f(x_i) - f(x_{i-1}))", 
+                     "x_{i+1} = (x_i + x_u) / 2", 
+                     "x_{i+1} = x_i + f(x_i)"], 
+                    "The Secant method uses x_{i+1} = x_i - f(x_i) * (x_i - x_{i-1}) / (f(x_i) - f(x_{i-1}))."],
+
+                ["What is the primary source of truncation error in numerical methods?", 
+                    ["Limited significant figures in number representation", 
+                     "Approximations used to represent exact mathematical procedures", 
+                     "Initial guesses that do not bracket the root", 
+                     "The use of derivatives in open methods"], 
+                    "Truncation error comes from approximating exact mathematical procedures, like in Taylor series."],
+
+                ["What is the effect of increasing the number of terms in a Taylor series expansion?", 
+                    ["It increases the truncation error", 
+                     "It decreases the truncation error, improving accuracy", 
+                     "It eliminates round-off errors", 
+                     "It has no effect on the error"], 
+                    "More terms in a Taylor series reduce truncation error, enhancing accuracy."],
+
+                ["In the context of numerical methods, what does O(h) notation indicate?", 
+                    ["The order of round-off error", 
+                     "The order of truncation error, proportional to the step size h", 
+                     "The number of significant figures used", 
+                     "The convergence rate of the method"], 
+                    "O(h) notation indicates the truncation error order, proportional to the step size."]
+            ];
+
+            // Randomize correct answers for each question
+            questions.forEach(q => {
+                const options = q[1]; // Array of options
+                const correctIndex = Math.floor(Math.random() * 4); // Random index (0-3) for correct answer
+                q[5] = String.fromCharCode(65 + correctIndex); // Set correct answer (A, B, C, or D)
+                
+                // Reorganize options to match the random correct answer
+                const newOptions = [];
+                newOptions[correctIndex] = options[0]; // Place correct option at random position
+                let j = 1;
+                for (let i = 0; i < 4; i++) {
+                    if (i !== correctIndex) {
+                        newOptions[i] = options[j];
+                        j++;
+                    }
+                }
+                q[1] = newOptions; // Update options with shuffled correct answer
+            });
+
+            let score = 0;
+
+            for (let i = 1; i <= questions.length; i++) {
+                let q = questions[i - 1];
+                document.write(`<div class="question" id="q${i}"><p>${i}. ${q[0]}</p>
+                <div class="options">
+                    <div><input type="radio" name="q${i}" value="A" onchange="checkAnswer(${i}, 'A')"> A. ${q[1][0]}</div>
+                    <div><input type="radio" name="q${i}" value="B" onchange="checkAnswer(${i}, 'B')"> B. ${q[1][1]}</div>
+                    <div><input type="radio" name="q${i}" value="C" onchange="checkAnswer(${i}, 'C')"> C. ${q[1][2]}</div>
+                    <div><input type="radio" name="q${i}" value="D" onchange="checkAnswer(${i}, 'D')"> D. ${q[1][3]}</div>
+                </div>
+                <p class="feedback" id="feedback${i}"></p>
+                <p class="explanation" id="exp${i}">${q[2]}</p>
+                </div>`);
+            }
+
+            document.write(`<p id="score">Score: ${score}/50</p>`);
+
+            function checkAnswer(questionNumber, selectedAnswer) {
+                const correctAnswer = questions[questionNumber - 1][5];
+                const feedback = document.getElementById(`feedback${questionNumber}`);
+                const explanation = document.getElementById(`exp${questionNumber}`);
+                const questionDiv = document.getElementById(`q${questionNumber}`);
+
+                if (selectedAnswer === correctAnswer) {
+                    feedback.innerHTML = '<span class="correct">Correct!</span>';
+                    feedback.style.display = 'block';
+                    if (explanation) explanation.style.display = 'none';
+                    score++;
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">Incorrect. The correct answer is ' + correctAnswer + '.</span>';
+                    feedback.style.display = 'block';
+                    if (explanation) explanation.style.display = 'block';
+                }
+
+                document.getElementById('score').textContent = `Score: ${score}/50`;
+                
+                // Do not disable radio buttons, allowing users to try again
+            }
+        </script>
+    </div>
+</body>
+</html>
